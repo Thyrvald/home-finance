@@ -19,7 +19,7 @@ def add_income(inc: Income):
 
 @router.get("/income")
 def get_income():
-    return {"income": income}
+    return income
 
 @router.post("/category")
 def add_category(category: Category):

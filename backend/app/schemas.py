@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 from datetime import date
 
@@ -11,8 +12,9 @@ class Category(BaseModel):
 class RegularExpense(BaseModel):
     name: str
     amount: float
-    date: date
+    due_date: date
     Category: Category
+    is_paid: Optional[bool] = False
 
 class OneTimeExpense(BaseModel):
     name: str
