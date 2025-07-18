@@ -52,4 +52,4 @@ def get_regular_expenses():
 def get_balance():
     income_total = sum(inc.amount for inc in income)
     expenses = sum(ote.amount for ote in one_time_expenses) + sum(regular_expense.amount for regular_expense in regular_expenses)
-    return {"Balance": income_total - expenses}
+    return [{"amount": income_total - expenses}]

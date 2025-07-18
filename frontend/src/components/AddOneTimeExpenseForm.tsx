@@ -1,7 +1,7 @@
 // src/components/AddIncomeForm.tsx
 import { useState } from "react";
 
-export default function AddOneTimeExpenseForm() {
+export function AddOneTimeExpenseForm({ onAdd }: { onAdd: () => void }) {
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
     const [date, setDate] = useState("");
@@ -33,6 +33,8 @@ export default function AddOneTimeExpenseForm() {
             setAmount("");
             setDate("")
             setCategory("")
+            console.log("Dodano przychód, wywołuję onAdd()");
+            onAdd(); // odświeżenie listy
         } catch (err) {
             console.error(err);
             setMessage("❌ Wystąpił błąd");

@@ -1,8 +1,13 @@
-export default function BalancePage() {
+import { useState } from "react";
+import { GetBalance } from "../components/GetBalance";
+
+export default function ListIncomePage() {
+    const [reload, setReload] = useState(false);
+
     return (
         <div>
             <h1 className="text-2xl font-bold mb-4">Bilans</h1>
-            <p>Tu będzie bilans przychodów i wydatków.</p>
+            <GetBalance reload={reload} />
         </div>
     );
 }

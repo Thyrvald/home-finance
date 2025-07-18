@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 
-export function ListIncome({ reload }: { reload: boolean }) {
-    const [income, setIncome] = useState([]);
+export function ListOneTimeExpenses({ reload }: { reload: boolean }) {
+    const [oneTimeExpenses, setOneTimeExpenses] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 console.log("Odpalam useEffect z reload =", reload);
-                fetch("http://localhost:8000/income")
+                fetch("http://localhost:8000/one-time-expenses")
                     .then((res) => res.json())
                     .then((data) => {
                         console.log("Dostałem z backendu:", data);
-                        setIncome(Array.isArray(data) ? data : []);
+                        setOneTimeExpenses(Array.isArray(data) ? data : []);
                     });
                 // setIncome(data);
             } catch (error) {
-                console.error("Failed to fetch income:", error);
+                console.error("Failed to fetch one time expenses:", error);
             }
         };
 
@@ -24,11 +24,11 @@ export function ListIncome({ reload }: { reload: boolean }) {
 
     return (
         <div>
-            <h2 className="text-xl font-semibold mb-2">Lista przychodów</h2>
+            <h2 className="text-xl font-semibold mb-2">Lista wydatków</h2>
             <ul className="space-y-2">
-                {income.map((item: any, index: number) => (
+                {oneTimeExpenses.map((item: any, index: number) => (
                     <li key={index} className="border p-2 rounded">
-                        {item.name} - {item.amount} zł
+                        {item.name} - {item.amount} zł | Kategoria: {item.Category.name} | data: {item.date}
                     </li>
                 ))}
             </ul>
