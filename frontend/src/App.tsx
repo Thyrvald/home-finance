@@ -46,10 +46,25 @@
 //
 // export default App
 
-import Home from "./pages/Home";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./components/Layout";
+import AddIncomePage from "./pages/income/AddIncomePage";
+import ListIncomePage from "./pages/income/ListIncomePage";
+import BalancePage from "./pages/BalancePage";
 
 function App() {
-    return <Home />;
+    return (
+        <Router>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Navigate to="/income/add" />} />
+                    <Route path="/income/add" element={<AddIncomePage />} />
+                    <Route path="/income/list" element={<ListIncomePage />} />
+                    <Route path="/balance" element={<BalancePage />} />
+                </Routes>
+            </Layout>
+        </Router>
+    );
 }
 
 export default App;
