@@ -5,8 +5,8 @@ import ModifyCategoryPage from "./pages/categories/AddCategoryPage";
 import AddIncomePage from "./pages/income/AddIncomePage";
 import ListIncomePage from "./pages/income/ListIncomePage";
 import BalancePage from "./pages/BalancePage";
-import AddOneTimeExpensePage from "./pages/one-time-expenses/AddOneTimeExpensePage";
-import ListOneTimeExpensesPage from "./pages/one-time-expenses/ListOneTimeExpensesPage";
+import AddOneTimeExpensePage from "./pages/expenses/one-time-expenses/AddOneTimeExpensePage";
+import ListOneTimeExpensesPage from "./pages/expenses/one-time-expenses/ListOneTimeExpensesPage";
 
 function App() {
     return (

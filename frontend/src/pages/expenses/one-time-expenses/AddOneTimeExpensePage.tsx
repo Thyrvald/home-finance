@@ -1,4 +1,4 @@
-import { AddOneTimeExpenseForm } from "../../components/Expenses/AddOneTimeExpenseForm.tsx";
+import { AddOneTimeExpenseForm } from "../../../components/Expenses/OneTimeExpenses/AddOneTimeExpenseForm.tsx";
 
 export default function AddOneTimeExpensePage() {
     return (

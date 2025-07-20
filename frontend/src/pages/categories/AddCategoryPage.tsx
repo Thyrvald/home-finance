@@ -1,12 +1,10 @@
-import {useState} from "react";
+import { AddCategoryForm } from "../../components/Categories/AddCategoryForm.tsx";
 
-export default function AddCategoryPage() {
-    const [reload, setReload] = useState(false);
-
+export default function AddIncomePage() {
     return (
         <div>
-            <h1 className="text-2xl font-bold mb-4">Kategorie</h1>
-            <p>Tu będzie dodawanie kategorii.</p>
+            <h1 className="text-2xl font-bold mb-4">Dodaj kategorię</h1>
+            <AddCategoryForm onAdd={() => {}} />
         </div>
     );
 }

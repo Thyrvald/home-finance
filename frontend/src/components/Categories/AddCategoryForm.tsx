@@ -1,9 +1,8 @@
 // src/components/AddCategoryForm.tsx
 import { useState } from "react";
 
-export default function AddCategoryForm() {
+export function AddCategoryForm({ onAdd }: { onAdd: () => void }) {
     const [name, setName] = useState("");
-    const [amount, setAmount] = useState("");
     const [message, setMessage] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -25,7 +24,7 @@ export default function AddCategoryForm() {
 
             setMessage("✅ Kategoria dodana pomyślnie");
             setName("");
-            setAmount("");
+            onAdd(); // odświeżenie listy
         } catch (err) {
             console.error(err);
             setMessage("❌ Wystąpił błąd");

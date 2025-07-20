@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ListOneTimeExpenses } from "../../components/Expenses/ListOneTimeExpenses.tsx";
+import { ListOneTimeExpenses } from "../../../components/Expenses/OneTimeExpenses/ListOneTimeExpenses.tsx";
 
 export default function ListOneTimeExpensesPage() {
     const [reload, setReload] = useState(false);
