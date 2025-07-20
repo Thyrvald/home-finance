@@ -8,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Na początek * — w produkcji wpisz konkretną domenę
+    allow_origins=["http://localhost:5173"],  # Na początek * — w produkcji wpisz konkretną domenę
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -17,4 +17,4 @@ app.include_router(income.router, prefix="/income", tags=["Income"])
 app.include_router(one_time_expenses.router, prefix="/one-time-expenses", tags=["OneTimeExpenses"])
 app.include_router(regular_expenses.router, prefix="/regular-expenses", tags=["RegularExpenses"])
 
-app.include_router(categories.router, prefix="/categories", tags=["Categories"])
+app.include_router(categories.router, prefix="/category", tags=["Categories"])
