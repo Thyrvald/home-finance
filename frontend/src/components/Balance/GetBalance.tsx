@@ -15,7 +15,7 @@ export function GetBalance({ reload }: { reload: boolean }) {
                     });
                 // setIncome(data);
             } catch (error) {
-                console.error("Failed to fetch income:", error);
+                console.error("Failed to fetch Income:", error);
             }
         };
 

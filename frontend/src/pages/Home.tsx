@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AddIncomeForm } from "../components/AddIncomeForm";
-import { ListIncome } from "../components/ListIncome.tsx";
+import { AddIncomeForm } from "../components/Income/AddIncomeForm.tsx";
+import { ListIncome } from "../components/Income/ListIncome.tsx";
 
 export default function Home() {
     const [reload, setReload] = useState(false);

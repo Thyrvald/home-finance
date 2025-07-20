@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ListIncome } from "../../components/ListIncome";
+import { ListIncome } from "../../components/Income/ListIncome.tsx";
 
 export default function ListIncomePage() {
     const [reload, setReload] = useState(false);

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GetBalance } from "../components/GetBalance";
+import { GetBalance } from "../components/Balance/GetBalance.tsx";
 
 export default function ListIncomePage() {
     const [reload, setReload] = useState(false);

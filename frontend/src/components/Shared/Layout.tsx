@@ -6,8 +6,8 @@
 //         <div className="flex h-screen">
 //             <aside className="w-1/4 bg-gray-100 p-4 shadow-md">
 //                 <nav className="space-y-4">
-//                     <Link to="/income/add" className="block text-blue-600 hover:underline">Dodaj przychód</Link>
-//                     <Link to="/income/list" className="block text-blue-600 hover:underline">Lista przychodów</Link>
+//                     <Link to="/Income/add" className="block text-blue-600 hover:underline">Dodaj przychód</Link>
+//                     <Link to="/Income/list" className="block text-blue-600 hover:underline">Lista przychodów</Link>
 //                     <Link to="/one-time-expenses/add" className="block text-blue-600 hover:underline">Dodaj wydatek</Link>
 //                     <Link to="/one-time-expenses/list" className="block text-blue-600 hover:underline">Lista wydatków</Link>
 //                     <Link to="/balance" className="block text-blue-600 hover:underline">Bilans</Link>

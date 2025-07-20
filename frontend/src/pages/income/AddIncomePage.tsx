@@ -1,4 +1,4 @@
-import { AddIncomeForm } from "../../components/AddIncomeForm";
+import { AddIncomeForm } from "../../components/Income/AddIncomeForm.tsx";
 
 export default function AddIncomePage() {
     return (
