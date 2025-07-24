@@ -5,11 +5,11 @@ router = APIRouter()
 
 income = []
 
-@router.post("/income")
+@router.post("/")
 def add_income(inc: Income):
     income.append(inc)
     return {"message":"Income added successfully"}
 
-@router.get("/income")
+@router.get("/")
 def get_income():
     return income

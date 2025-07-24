@@ -5,11 +5,11 @@ router = APIRouter()
 
 regular_expenses = []
 
-@router.post("/regular-expenses")
+@router.post("/")
 def add_regular_expense(regular_expense: RegularExpense):
     regular_expenses.append(regular_expense)
     return {"message":"Expense added successfully"}
 
-@router.get("/regular-expenses")
+@router.get("/")
 def get_regular_expenses():
     return regular_expenses

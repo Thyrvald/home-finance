@@ -10,7 +10,7 @@ export function AddCategoryForm({ onAdd }: { onAdd: () => void }) {
         setMessage("Wysyłanie...");
 
         try {
-            const res = await fetch("http://127.0.0.1:8000/category", {
+            const res = await fetch("http://localhost:8000/category", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -2,9 +2,11 @@ from pydantic import BaseModel
 from datetime import date
 
 
-class OneTimeExpense(BaseModel):
-    id: float
+class OneTimeExpenseIn(BaseModel):
     name: str
     amount: float
     date: date
-    # Category: Category
+    category_id: int
+
+class OneTimeExpenseOut(OneTimeExpenseIn):
+    id: int

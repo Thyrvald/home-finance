@@ -1,15 +1,33 @@
-from fastapi import APIRouter
-from app.schemas import OneTimeExpense
+from fastapi import APIRouter, HTTPException
+from app.schemas import OneTimeExpenseIn, OneTimeExpenseOut
+from app.routers.categories import categories
 
 router = APIRouter()
 
 one_time_expenses = []
+one_time_expenses_id_counter = 0
 
-@router.post("/one-time-expenses")
-def add_one_time_expense(ote: OneTimeExpense):
-    one_time_expenses.append(ote)
-    return {"message":"Expense added successfully"}
+@router.post("/")
+def add_one_time_expense(ote: OneTimeExpenseIn):
+    global one_time_expenses_id_counter
 
-@router.get("/one-time-expenses")
+    # sprawdzamy, czy kategoria istnieje
+    category = next((cat for cat in categories if cat["id"] == ote.category_id), None)
+    if not category:
+        raise HTTPException(status_code=400, detail="Invalid category")
+
+    new_expense = {
+        "id": one_time_expenses_id_counter,
+        "name": ote.name,
+        "amount": ote.amount,
+        "date": ote.date,
+        "category_id": ote.category_id,
+    }
+
+    one_time_expenses.append(new_expense)
+    one_time_expenses_id_counter += 1
+    return new_expense
+
+@router.get("/", response_model=list[OneTimeExpenseOut])
 def get_one_time_expenses():
     return one_time_expenses
