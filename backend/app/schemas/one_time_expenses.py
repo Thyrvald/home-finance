@@ -1,5 +1,9 @@
+from typing import Optional
+
 from pydantic import BaseModel
 from datetime import date
+
+from app.schemas import CategoryOut
 
 
 class OneTimeExpenseIn(BaseModel):
@@ -10,3 +14,4 @@ class OneTimeExpenseIn(BaseModel):
 
 class OneTimeExpenseOut(OneTimeExpenseIn):
     id: int
+    Category: Optional[CategoryOut] = None

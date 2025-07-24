@@ -30,4 +30,11 @@ def add_one_time_expense(ote: OneTimeExpenseIn):
 
 @router.get("/", response_model=list[OneTimeExpenseOut])
 def get_one_time_expenses():
-    return one_time_expenses
+    results = []
+    for expense in one_time_expenses:
+        category = next ((cat for cat in categories if cat ["id"] == expense["category_id"]), None)
+        results.append({
+            **expense,
+            "Category": category
+        })
+    return results
