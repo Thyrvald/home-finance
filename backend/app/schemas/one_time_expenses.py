@@ -12,6 +12,9 @@ class OneTimeExpenseIn(BaseModel):
     date: date
     category_id: int
 
+class OneTimeExpenseInternal(OneTimeExpenseIn):
+    id: int
+
 class OneTimeExpenseOut(OneTimeExpenseIn):
     id: int
-    Category: Optional[CategoryOut] = None
+    category_name: str

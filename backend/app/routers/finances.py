@@ -6,7 +6,7 @@ router = APIRouter()
 def ping():
     return {"message":"pong"}
 
-@router.get("/balance")
+@router.get("/")
 def get_balance():
     income_total = sum(inc.amount for inc in income.income)
     expenses = sum(ote.amount for ote in one_time_expenses.one_time_expenses) + sum(regular_expense.amount for regular_expense in regular_expenses.regular_expenses)

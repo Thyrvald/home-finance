@@ -28,7 +28,7 @@ export function ListOneTimeExpenses({ reload }: { reload: boolean }) {
             <ul className="space-y-2">
                 {oneTimeExpenses.map((item: any, index: number) => (
                     <li key={index} className="border p-2 rounded">
-                        {item.name} - {item.amount} zł | Kategoria: {item.Category.name} | data: {item.date}
+                        {item.name} - {item.amount} zł | Kategoria: {item.category_name} | data: {item.date}
                     </li>
                 ))}
             </ul>

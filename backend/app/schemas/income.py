@@ -1,7 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class Income(BaseModel):
-    id: Optional[float] = 1
+class IncomeIn(BaseModel):
     name: str
     amount: float
+
+class IncomeOut(IncomeIn):
+    id: int
