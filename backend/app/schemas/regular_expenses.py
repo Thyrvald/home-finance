@@ -17,6 +17,15 @@ class RegularExpenseInternal(RegularExpenseIn):
     id: int
 
 
-class RegularExpenseOut(RegularExpenseIn):
+class RegularExpenseCreate(BaseModel):
+    name: str
+    amount: float
+    due_date: date
+    category_id: int
+    is_paid: Optional[bool] = False
+
+class RegularExpenseOut(RegularExpenseCreate):
     id: int
     category_name: str
+
+    model_config = {"from_attributes": True}

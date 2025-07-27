@@ -1,25 +1,22 @@
-from fastapi import APIRouter
-from app.schemas import IncomeIn, IncomeOut
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from app.database import get_db
+from app.models.income import Income
+from app.schemas import IncomeCreate, IncomeOut
 
 router = APIRouter()
 
-income: list[IncomeOut] = []
-income_id_counter = 0
-
-@router.post("/")
-def add_income(inc: IncomeIn):
-    global income_id_counter
-
-    new_income = IncomeOut(
-        id=income_id_counter,
-        name=inc.name,
-        amount=inc.amount,
+@router.post("/", response_model=IncomeOut)
+def add_income(income: IncomeCreate, db: Session = Depends(get_db)):
+    new_income = Income(
+        name=income.name,
+        amount=income.amount,
     )
+    db.add(new_income)
+    db.commit()
+    db.refresh(new_income)
+    return new_income
 
-    income.append(new_income)
-    income_id_counter += 1
-    return income
-
-@router.get("/")
-def get_income():
-    return income
+@router.get("/", response_model=list[IncomeOut])
+def get_income(db: Session = Depends(get_db)):
+    return db.query(Income).all()

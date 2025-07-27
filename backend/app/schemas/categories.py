@@ -1,9 +1,10 @@
 from pydantic import BaseModel
 
 
-class CategoryIn(BaseModel):
+class CategoryCreate(BaseModel):
     name: str
 
-class CategoryOut(BaseModel):
+class CategoryOut(CategoryCreate):
     id: int
-    name: str
+
+    model_config = {"from_attributes": True}

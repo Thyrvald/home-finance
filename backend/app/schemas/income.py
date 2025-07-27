@@ -1,9 +1,11 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class IncomeIn(BaseModel):
+class IncomeCreate(BaseModel):
     name: str
     amount: float
 
-class IncomeOut(IncomeIn):
+class IncomeOut(IncomeCreate):
     id: int
+
+    model_config = {"from_attributes": True}

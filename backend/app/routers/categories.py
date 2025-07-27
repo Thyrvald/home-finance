@@ -1,22 +1,26 @@
-from fastapi import APIRouter
-from app.schemas import CategoryIn, CategoryOut
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from app.database import get_db
+from app.models.categories import Category
+from app.schemas import CategoryCreate, CategoryOut
 
 router = APIRouter()
 
-categories: list[CategoryOut] = []
-category_id_counter = 0
-
 @router.post("/", response_model=CategoryOut)
-def add_category(category: CategoryIn):
-    global category_id_counter
-    new_category = CategoryOut(
-        id = category_id_counter,
-        name = category.name,
+def add_category(category: CategoryCreate, db: Session = Depends(get_db)):
+    # Check if category exists
+    existing = db.query(Category).filter(Category.name == category.name).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="Category already exists")
+
+    new_category = Category(
+        name=category.name
     )
-    categories.append(new_category)
-    category_id_counter += 1
+    db.add(new_category)
+    db.commit()
+    db.refresh(new_category)
     return new_category
 
 @router.get("/", response_model=list[CategoryOut])
-def get_category():
-    return categories
+def get_category(db: Session = Depends(get_db)):
+    return db.query(Category).all()

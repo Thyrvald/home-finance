@@ -21,3 +21,9 @@ frontend/build/
 # OS
 .DS_Store
 Thumbs.db
+
+# Scripts
+*.sh
+
+# DB
+*.db

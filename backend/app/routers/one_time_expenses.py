@@ -1,44 +1,43 @@
-from fastapi import APIRouter, HTTPException
-from app.schemas import OneTimeExpenseIn, OneTimeExpenseInternal, OneTimeExpenseOut, RegularExpenseOut
-from app.routers.categories import categories
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from app.database import get_db
+from app.models import Category, OneTimeExpense
+
+from app.schemas import OneTimeExpenseCreate, OneTimeExpenseOut
 
 router = APIRouter()
 
-one_time_expenses: list[OneTimeExpenseInternal] = []
-one_time_expenses_id_counter = 0
-
 @router.post("/")
-def add_one_time_expense(one_time_expense: OneTimeExpenseIn):
-    global one_time_expenses_id_counter
+def add_one_time_expense(one_time_expense: OneTimeExpenseCreate, db: Session = Depends(get_db)):
 
-    # Check if category exists
-    category = next((cat for cat in categories if cat.id == one_time_expense.category_id), None)
-    if not category:
-        raise HTTPException(status_code=400, detail="Invalid category")
+    # # Check if category exists
+    existing = db.query(Category).filter(Category.id == one_time_expense.category_id).first()
+    if not existing:
+        raise HTTPException(status_code=400, detail="No such category")
 
-    new_expense = OneTimeExpenseInternal(
-        id = one_time_expenses_id_counter,
-        name = one_time_expense.name,
-        amount = one_time_expense.amount,
-        date = one_time_expense.date,
-        category_id = one_time_expense.category_id,
+    new_expense = OneTimeExpense(
+        name=one_time_expense.name,
+        amount=one_time_expense.amount,
+        date=one_time_expense.date,
+        category_id=one_time_expense.category_id
     )
+    db.add(new_expense)
+    db.commit()
+    db.refresh(new_expense)
 
-    one_time_expenses.append(new_expense)
-    one_time_expenses_id_counter += 1
     return new_expense
 
 @router.get("/", response_model=list[OneTimeExpenseOut])
-def get_one_time_expenses():
+def get_one_time_expenses(db: Session = Depends(get_db)):
+    one_time_expenses = db.query(OneTimeExpense).all()
     results = []
     for expense in one_time_expenses:
-        category = next ((cat for cat in categories if cat.id == expense.category_id), None)
         results.append(OneTimeExpenseOut(
             id = expense.id,
             name = expense.name,
             amount = expense.amount,
             date = expense.date,
             category_id = expense.category_id,
-            category_name = category.name,
+            category_name = db.query(Category).filter(Category.id == expense.category_id).first().name,
         ))
     return results

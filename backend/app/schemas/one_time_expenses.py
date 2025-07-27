@@ -1,20 +1,15 @@
-from typing import Optional
-
 from pydantic import BaseModel
 from datetime import date
 
-from app.schemas import CategoryOut
 
-
-class OneTimeExpenseIn(BaseModel):
+class OneTimeExpenseCreate(BaseModel):
     name: str
     amount: float
     date: date
     category_id: int
 
-class OneTimeExpenseInternal(OneTimeExpenseIn):
-    id: int
-
-class OneTimeExpenseOut(OneTimeExpenseIn):
+class OneTimeExpenseOut(OneTimeExpenseCreate):
     id: int
     category_name: str
+
+    model_config = {"from_attributes": True}
