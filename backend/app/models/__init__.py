@@ -1,4 +1,4 @@
-from .categories import Category
+from .category import Category
 from .income import Income
-from .one_time_expenses import OneTimeExpense
-from .regular_expenses import RegularExpense
+from app.models.expenses.one_time_expense import OneTimeExpense
+from app.models.expenses.regular_expense import RegularExpense

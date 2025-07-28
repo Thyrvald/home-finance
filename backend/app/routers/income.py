@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Depends
+
 from sqlalchemy.orm import Session
+
 from app.database import get_db
 from app.models.income import Income
 from app.schemas import IncomeCreate, IncomeOut

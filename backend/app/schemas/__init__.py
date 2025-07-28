@@ -1,4 +1,4 @@
 from .income import IncomeCreate, IncomeOut
-from .categories import CategoryCreate, CategoryOut
-from .regular_expenses import RegularExpenseIn, RegularExpenseCreate, RegularExpenseOut
-from .one_time_expenses import OneTimeExpenseCreate, OneTimeExpenseOut
+from .category import CategoryCreate, CategoryOut
+from app.schemas.expenses.regular_expense import RegularExpenseCreate, RegularExpenseOut
+from app.schemas.expenses.one_time_expense import OneTimeExpenseCreate, OneTimeExpenseOut
