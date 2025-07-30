@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
-from sqlalchemy.orm import relationship, declared_attr
 
 from app.database import Base
 
@@ -9,7 +8,4 @@ class BaseExpense(Base):
     name = Column(String)
     amount = Column(Float)
     category_id = Column(Integer, ForeignKey("categories.id"))
-
-    @declared_attr
-    def category(cls):
-        return relationship("Category", back_populates=cls.__tablename__)
+    user_id = Column(Integer, ForeignKey("users.id"))
