@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.category import Category
 from app.schemas import CategoryCreate, CategoryOut
+from app.config.messages import MSG_CATEGORY_ALREADY_EXISTS
 
 router = APIRouter()
 
@@ -13,7 +14,7 @@ def add_category(category: CategoryCreate, db: Session = Depends(get_db)):
     # Check if category exists
     existing = db.query(Category).filter(Category.name == category.name).first()
     if existing:
-        raise HTTPException(status_code=400, detail="Category already exists")
+        raise HTTPException(status_code=400, detail=MSG_CATEGORY_ALREADY_EXISTS)
 
     new_category = Category(
         name=category.name
