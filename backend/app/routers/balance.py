@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.services.finances import calculate_balance
+from app.services.balance_service import calculate_balance
 
 router = APIRouter()
 
